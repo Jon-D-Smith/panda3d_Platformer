@@ -84,10 +84,13 @@ class Platformer(ShowBase):
 
         for entry in self.queue.getEntries():
             inp = entry.getIntoNodePath().getPos(self.render)
-            if not self.is_jumping:
-                self.position.z = inp.z
-            else:
-                self.is_jumping = False
+
+            if self.velocity.z < 0:
+                if not self.is_jumping:
+                    self.position.z = inp.z
+                    self.velocity.z = 0
+                else:
+                    self.is_jumping = False
 
         if self.position.z <= -10:
             self.position.z = 30
