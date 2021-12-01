@@ -63,10 +63,19 @@ class Platformer(ShowBase):
         self.cTrav.addCollider(collider, self.queue)
 
         self.is_jumping = False
+        self.is_on_floor = True
+        self.jump_count = 0
 
     def jump(self):
-        self.is_jumping = True
-        self.velocity.z = self.JUMP_FORCE
+        if self.is_on_floor:
+            self.is_jumping = True
+            self.is_on_floor = False
+            self.velocity.z = self.JUMP_FORCE
+            self.jump_count += 1
+            if self.jump_count == 2:
+                self.is_jumping = False
+                self.is_on_floor = True
+                self.jump_count = 0
 
     def update(self, task):
         dt = globalClock.getDt()
