@@ -109,6 +109,8 @@ class Platformer(ShowBase):
 
         self.player.setPos(self.position)
 
+        self.cam.setX(self.position.x)
+
         return task.cont
 
 
