@@ -98,6 +98,7 @@ class Platformer(ShowBase):
                 if not self.is_jumping:
                     self.position.z = inp.z
                     self.velocity.z = 0
+                    self.is_on_floor = True
                 else:
                     self.is_jumping = False
 
